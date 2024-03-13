@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>음료자판기</title>
+        <style>
+            #contents {
+                width: 450px; height: 500px;
+                border: 2px solid black;
+            }
+
+            .sub_contents_1 {
+                width: 410px; height: 200px;
+                border: 2px solid gainsboro;
+                    margin-left: 20px;
+                    margin-top: 20px;
+                    
+            }
+            .sub_contents_2{
+                width: 410px; height: 55px;
+                border: 2px solid gainsboro;
+                    margin-left: 20px;
+                    margin-top: 20px;
+                    text-align: right;
+                    position: relative;
+            }
+            .sub_contents_3{
+                width: 410px; height: 75px;
+                border: 2px solid gainsboro;
+                margin-left: 20px;
+                margin-top: 10px;
+                text-align: center;
+                line-height: 75px;
+                font-size: 25px;
+                font-weight: 500;
+                position: relative;
+            }
+            .sub_contents_3_col {
+                width: 150px; height: 60px;
+                border: 1px solid grey;
+                border-radius: 20px;
+                position: absolute;
+                top: 7px; left: 10px;
+                text-align: center;
+                line-height: 60px;
+                display: none;
+            }
+            .sub_contents_3_sa {
+                width: 150px; height: 60px;
+                border: 1px solid grey;
+                border-radius: 20px;
+                position: absolute;
+                top: 7px; left: 10px;
+                text-align: center;
+                line-height: 60px;
+                display: none;
+            }
+            .sub_contents_3_ta {
+                width: 150px; height: 60px;
+                border: 1px solid grey;
+                border-radius: 20px;
+                position: absolute;
+                top: 7px; left: 10px;
+                text-align: center;
+                line-height: 60px;
+                display: none;
+            }
+            .sub_contents_4{
+                width: 410px; height: 85px;
+                border: 2px solid gainsboro;
+                margin-left: 20px;
+                margin-top:5px;
+            }
+            .sub_contents_4_1 {
+                text-align: left;
+                font-size:25px;
+                line-height: 85px;
+                float: left;
+                margin-left: 20px;
+            }
+            .sub_contents_4_2 {
+                width: 60px; height: 60px;
+                background-color: rgb(223, 223, 223);
+                border: 2px solid rgb(159, 158, 158);
+                border-radius: 50%;
+                float: left;
+                line-height: 60px;
+                text-align: center;
+                margin-top: 10px;
+                margin-left: 100px;
+                font-size: 20px;
+            }
+
+            .sub_contents_1_1{
+                width: 110px; height: 160px;
+                border: 1px solid gainsboro;
+                margin-top: 20px;
+                margin-left: 20px;
+                float: left;
+            }
+            
+            .sub_contents_1_1_1{
+                width: 85px; height: 85px;
+                border: 1px solid gainsboro;
+                margin-top: 10px;
+                margin-left: 10px;
+                float: left;
+            }
+
+            .sub_contents_1_2{
+                width: 110px; height: 160px;
+                border: 1px solid gainsboro;
+                margin-top: 20px;
+                margin-left: 20px;
+                float: left;
+            }
+            .sub_contents_1_2_2{
+                width: 85px; height: 85px;
+                border: 1px solid gainsboro;
+                margin-top: 10px;
+                margin-left: 10px;
+                float: left;
+            }
+
+            .sub_contents_1_3{
+                width: 110px; height: 160px;
+                border: 1px solid gainsboro;
+                margin-top: 20px;
+                margin-left: 20px;
+                float: left;
+            }
+            .sub_contents_1_3_3{
+                width: 85px; height: 85px;
+                border: 1px solid gainsboro;
+                margin-top: 10px;
+                margin-left: 10px;
+                float: left;
+            }
+
+            .sub1_1title {
+                width: 85px; height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 25px;
+                font-weight: 700;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+            .sub1_1_1title {
+                width: 85px; height: 95px;
+                text-align: center;
+                line-height: 95px;
+                font-size: 15px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
+            .sub1_2title {
+                width: 85px; height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 25px;
+                font-weight: 700;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+            .sub1_2_2title {
+                width: 85px; height: 95px;
+                text-align: center;
+                line-height: 95px;
+                font-size: 15px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
+            .sub1_3title {
+                width: 85px; height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 25px;
+                font-weight: 700;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+            .sub1_3_3title {
+                width: 85px; height: 95px;
+                text-align: center;
+                line-height: 95px;
+                font-size: 15px;
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+           .sub_contents_2_box{
+            width: 310px; height: 35px;
+                border: 1px solid black;
+                margin-top: 10px;
+                margin-left: 10px;
+                color: red;
+            font-size: 25px;
+            font-weight: 700;
+           } 
+           .sub_contents_2_btn {
+            width: 50px; height: 35px;
+            margin-top: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right:20px;
+           }
+          
+        </style>
+    </head>
+
+    <body>
+        <div id="contents">
+            <div class="sub_contents_1">
+                <div class="sub_contents_1_1">
+                    <div class="sub_contents_1_1_1">
+                        <img src="./콜라.jpeg" width="85px">
+                    </div>
+                    <div class="sub1_1title">콜라</div>
+                    <div class="sub1_1_1title">1000원</div>
+                </div>
+                <div class="sub_contents_1_2">
+                <div class="sub_contents_1_2_2">
+                    <img src="./사이다.jpeg" width="85px">
+                </div>
+                <div class="sub1_2title">사이다</div>
+                <div class="sub1_2_2title">500원</div>
+                </div>
+                <div class="sub_contents_1_3">
+                <div class="sub_contents_1_3_3">
+                    <img src="./환타.jpeg" width="85px">
+                </div>
+                <div class="sub1_3title">환타</div>
+                <div class="sub1_3_3title">700원</div>
+                </div>
+            </div>
+            <div class="sub_contents_2">
+                <div class="sub_contents_2_box">0</div>
+                <button class="sub_contents_2_btn">투입</button>
+            </div>
+            <div class="sub_contents_3">
+                <div class="sub_contents_3_1">상품나오는 곳</div>
+                <div class="sub_contents_3_col">콜라</div>
+                <div class="sub_contents_3_sa">사이다</div>
+                <div class="sub_contents_3_ta">환타</div>
+            </div>
+            <div class="sub_contents_4">
+                <div class="sub_contents_4_1">거스름돈 나오는 곳</div>
+                <div class="sub_contents_4_2">0</div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const box = document.querySelector(".sub_contents_2_box");
+                const btn = document.querySelector(".sub_contents_2_btn");
+                let count = 0;
+                
+                btn.addEventListener("click", function() {
+                    count += 100;
+                    box.textContent = count;
+                });
+                      
+                function buyDrink(price) {
+                    if (count < price) {
+                        alert('돈이 부족합니다.');
+                        document.querySelector('.sub_contents_3_col').style.display = 'none';
+                        document.querySelector('.sub_contents_3_sa').style.display = 'none';
+                        document.querySelector('.sub_contents_3_ta').style.display = 'none';
+                    } else {
+                        document.querySelector('.sub_contents_3_1').style.display = 'none';
+                        let change = count - price;
+                        count = 0;
+                        box.textContent = 0;
+                        document.querySelector('.sub_contents_4_2').innerText = change;         
+                    }
+                }
+        
+                document.querySelector('.sub_contents_1_1').addEventListener('click', function() {
+                    document.querySelector('.sub_contents_3_col').style.display = 'block';
+                    buyDrink(1000);
+                });
+        
+                document.querySelector('.sub_contents_1_2').addEventListener('click', function() {
+                    document.querySelector('.sub_contents_3_sa').style.display = 'block';
+                    buyDrink(500);
+                });
+        
+                document.querySelector('.sub_contents_1_3').addEventListener('click', function() {
+                    document.querySelector('.sub_contents_3_ta').style.display = 'block';
+                    buyDrink(700);
+                });
+        
+                btn.addEventListener('click', function() {
+                    if (document.querySelector('.sub_contents_4_2').innerText !== '0') {
+                        document.querySelector('.sub_contents_4_2').innerText = '0';
+                        document.querySelector('.sub_contents_3_col').style.display = 'none';
+                        document.querySelector('.sub_contents_3_sa').style.display = 'none';
+                        document.querySelector('.sub_contents_3_ta').style.display = 'none';
+                        document.querySelector('.sub_contents_3_1').style.display = 'block';
+                    }
+                });
+            });
+        </script>        
+    </body>
+</html>

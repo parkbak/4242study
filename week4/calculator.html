@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator ex</title>
+    <style>
+        /* 컨테이너 지정 및 설정 */
+        .calculator {
+            display: flex;
+            flex-direction: column; /* 모든요소가로배치 */
+            justify-content: space-evenly;/* 모든 요소 여백 일정하게 */
+            align-items: center; /* 컨테이너 아이템 가운데 정렬 */
+            width: 500px; height: 300px;
+            border: 1px solid black;
+            border-radius: 5px; 
+
+        }
+        /* 0이 입력된 부분 */
+        .display {
+            width: 465px; height: 50px;
+            background-color: rgb(235, 234, 234);
+            border: 1px solid gray;
+            text-align: right;
+            padding-right: 10px;
+            line-height: 50px;
+        }
+
+        /* 숫자 버튼 부분임 숫자 버튼 사이 간격 조절을 위해 div number 추가함 */
+        .number {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 475px; height: 217.5px;
+        }
+
+        /* 각 줄마다 간격 조절 */
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 475px; height: 35px;
+        }
+
+        /* 버튼 크기 조절 */
+        button {
+            width: 115px; height: 35px;
+            border-radius: 0px;
+            border: 1px solid gray;
+        }
+
+        /* 0버튼 크기 조절 */
+        .zero {
+            width: 230px; height: 35px;
+        }
+
+        /* =버튼 크기 조절 */
+        .equals {
+            width: 468px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">0</div> 
+        <div class="number">
+            <div class="buttons">
+                <button>7</button> 
+                <button>8</button> 
+                <button>9</button> 
+                <button>+</button>
+            </div>
+            <div class="buttons">
+                <button>6</button> 
+                <button>5</button> 
+                <button>4</button> 
+                <button>-</button>
+            </div>
+            <div class="buttons">
+                <button>3</button> 
+                <button>2</button> 
+                <button>1</button> 
+                <button>*</button>
+            </div>
+            <div class="buttons">
+                <button class="zero">0</button> 
+                <button>. </button> 
+                <button>/</button>
+            </div>
+            <div class="buttons">
+                <button class="equals">=</button> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

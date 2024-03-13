@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자판기</title>
+    <style>
+        table, th, tr {
+            border: 1px solid black;
+        }
+        #beverage_cola {
+            width: 100px;
+            height: 100px;
+        }
+        #beverage_cider {
+            width: 100px;
+            height: 100px;
+        }
+        #beverage_fanta {
+            width: 100px;
+            height: 100px;
+        }
+        .moneybox {
+            color: brown;
+            text-align: right;
+            margin-right: 5px;
+        }
+        #result_out {
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+        }
+        .changetext {
+            float: left;
+            margin-left: 40px;
+        }
+        .circle {
+            border: 1px solid gray;
+            border-radius: 50px;
+            width: 60px; height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 25px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <th colspan="1">
+                    <img border="1" id="beverage_cola" src="./image/cola.png">
+                    <br>
+                    <button class="col">콜라</button>
+                    <br>
+                    <small>1,000원</small>
+                </th>
+                <th colspan="1">
+                    <img border="1" id="beverage_cider" src="./image/cider.png">
+                    <br>
+                    <button class="sa">사이다</button>
+                    <br>
+                    <small>500원</small>
+                </th>
+                <th colspan="1">
+                    <img border="1" id ="beverage_fanta" src="./image/fanta.png">
+                    <br>
+                    <button class="ta">환타</button>
+                    <br>
+                    <small>700원</small>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <div class="moneybox">0</div>
+                    </th>
+                    <th>
+                        <div class="moneybtn"><input type="button" value="투입"></div>
+                    </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <div class="changetext">상품 나오는 곳</div>
+                </th>
+                <th>
+                    <div class="product"><input id="result_out" type="text" size="10px"></div>
+                </th>
+            </tr>
+            <tr class="changearea">
+                <th colspan="2">
+                    거스름돈 나오는 곳
+                </th>
+                <th>
+                    <div class="circle">0</div>
+                </th>
+            </tr>
+    </table>
+</form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const box = document.querySelector(".moneybox");
+            const btn = document.querySelector(".moneybtn");
+            let count = 0;
+
+            btn.addEventListener("click", function(){
+                count += 100;
+                box.textContent = count;
+            });
+
+            function buy(price) {
+                if (count<price) {
+                    alert('돈이 부족합니다');
+                } else {
+                    document.querySelector('.changetext').style.display = 'none';
+                    let change = count-price;
+                    count = 0;
+                    box.textContent = 0;
+                    document.querySelector('.circle').textContent= change;
+                }
+            }
+
+            document.querySelector('.col').addEventListener('click', function() {
+                buy(1000);
+                document.querySelector('.product').textContent = 콜라;
+            });
+            document.querySelector('.sa').addEventListener('click', function() {
+                buy(500);
+                document.querySelector('.product').textContent = 사이다;
+            });
+            document.querySelector('.ta').addEventListener('click', function() {
+                buy(700);
+                document.querySelector('.product').textContent = 환타;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자판기</title>
+    <style>
+        #box {
+            width: 250px;
+            height: 300px;
+            border: 2px solid black;
+            text-align: center;
+            position: absolute;
+        }
+        .box1 {
+            width: 230px;
+            height: 100px;
+            border: 1px solid black;
+            position: relative;
+            text-align: center;
+            right: 0%; left: 4.5%;
+            top: 3%;
+            bottom: 0;
+        }
+            
+        .smallbox, .smallbox2, .smallbox3 {
+         width: 60px;
+         height: 80px;
+         border: 1px solid black;
+         position: absolute;
+         top: 10px; 
+         left: 10px;
+        }
+
+        img {
+            border: 1px solid gray;
+            width: 40px;
+        }
+
+      .smallbox2 {
+         left: 80px; 
+        }
+
+      .smallbox3 {
+         left: 160px; 
+        }
+
+        .text-container {
+             position: absolute;
+             bottom: 0;
+             width: 100%;
+        }
+        
+        .box2 {
+         width: 230px;
+         height: 30px;
+         border: 1px solid black;
+         position: relative;
+         text-align: center;
+         right: 0%;
+         left: 1%;
+         top: 3%;
+         margin: 3%;
+         }
+
+         .textbox {
+            width: 150px; height: 20px;
+            border: 1px solid gray;
+            float: left;
+            margin-top: 4px;
+            margin-left: 10px;
+            text-align: right;
+            color: brown;
+            font-weight: 700;
+         }
+         button {
+            margin-top: 4px;
+         }
+
+        .box3 {
+            width: 230px;
+            height: 50px;
+            border: 1px solid black;
+            position: relative;
+            text-align: center;
+            left: 1%; 
+            top: 3%;
+            margin: 3%;
+            line-height: 50px; 
+        }
+        .col, .sa, .ta {
+            position: absolute;
+            width: 100px; height: 35px;
+            border: 1px solid black;
+            top: 6px; left: 10px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 35px;
+            font-size: 25px;
+            font-weight: 600;
+            display: none;
+
+        }
+        .box3_text {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .box4 {
+            width: 230px; height: 60px;
+            border: 1px solid gray;
+            margin-top: 20px;
+            margin-left: 10px;
+            text-align: center;
+        }
+        .box4_text {
+            float: left;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 60px;
+            margin-left: 20px;
+        }
+        .circle {
+            width: 40px; height: 40px;
+            float: left;
+            border: 1px solid gray;
+            border-radius: 25px;
+            text-align: center;
+            line-height: 40px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <div class="box1">
+        <div class="smallbox">
+            <img id="smallbox" src="/img/coke.jpeg">
+            콜라
+            1000원
+        </div>    
+        <div class="smallbox2">
+            <img id="smallbox2" src="/img/cider.jpeg">
+            사이다 
+            500원
+        </div>
+        <div class="smallbox3">
+            <img id="smallbox3" src="/img/fanta.jpeg">
+            환타<br> 
+            700원
+        </div>
+        
+    </div>
+
+    <div class="box2">
+        <div class="textbox">0</div>
+        <button>투입</button>
+    </div>
+    
+    <div class="box3">
+        <div class="box3_text">상품나오는 곳</div>
+        <div class="col">콜라</div>
+        <div class="sa">사이다</div>
+        <div class="ta">환타</div>
+    </div>
+    
+    <div class="box4">
+        <div class="box4_text">거스름돈 나오는 곳</div>
+        <div class="circle">0</div> 
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const box = document.querySelector(".textbox");
+            const btn = document.querySelector("button");
+            let count = 0;
+
+            btn.addEventListener("click", function () {
+                count +=100;
+                box.textContent = count;
+                document.querySelector('.col').style.display = 'none';
+                document.querySelector('.sa').style.display = 'none';
+                document.querySelector('.ta').style.display = 'none';
+                document.querySelector('.box3_text').style.display = 'block';
+                change = 0;
+                document.querySelector('.circle').innerText = change;
+
+            });
+
+            function buy(price) {
+                if (count<price) {
+                    alert('돈이 부족합니둥');
+                    document.querySelector('.col').style.display = 'none';
+                    document.querySelector('.sa').style.display = 'none';
+                    document.querySelector('.ta').style.display = 'none';
+                } else {
+                    document.querySelector('.box3_text').style.display = 'none';
+                    let change = count - price;
+                    count=0;
+                    box.textContent = 0;
+                    document.querySelector('.circle').innerText = change;
+                }
+            }
+            document.querySelector('.smallbox').addEventListener('click', function () {
+                buy(1000);
+                document.querySelector('.col').style.display = 'block';
+            });
+            document.querySelector('.smallbox2').addEventListener('click', function () {
+                buy(500);
+                document.querySelector('.sa').style.display = 'block';
+            });
+            document.querySelector('.smallbox3').addEventListener('click', function () {
+                buy(700);
+                document.querySelector('.ta').style.display = 'block';
+            });
+
+        });
+    </script>    
+</body>
+</html>

@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+ul {
+    display: flex;
+    
+    padding: 0;
+    list-style-type: none;
+    height: 200px;
+
+    /* flex-direction: row;
+    flex-wrap: nowrap; */
+
+    /* 
+    flex-flow는 flex-direction과 flex-wrap을
+    한번에 표현한 것임,,, 위에 설정한 것을
+    flex-flow: row nowrap;<< 이렇게 한 줄로 표현 가능
+    */
+
+    border: 5px solid red;
+    justify-content: space-evenly;
+}
