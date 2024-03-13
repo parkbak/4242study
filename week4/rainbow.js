@@ -21,5 +21,3 @@ function selectColor() {
     }
     alert(colorName);
 }
-
-if ()

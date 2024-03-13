@@ -1,12 +1,11 @@
 function agecalc () {
     var x = 21, result;
-    result = 21;
+    result = x;
 
     if (result === 21) {
         var str = 'Correct, My age is ' + result;
         alert(str);
-        }
-        else {
+        } else {
             alert("try again");
         }
 }
