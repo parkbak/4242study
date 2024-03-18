@@ -32,21 +32,18 @@ document.addEventListener("DOMContentLoaded", function btn () {
     });
 
     document.querySelector('.m_age').addEventListener('click', function m_btn_age() {
-        person.age = '21살';
         document.querySelector('.age').style.display = 'none';
         delete person.age;
         console.log(person);
     });
 
     document.querySelector('.m_hobby').addEventListener('click', function m_btn_hobby() {
-        person.hobby = '뜨개질';
         document.querySelector('.hobby').style.display = 'none';
         delete person.hobby;
         console.log(person);
     });
 
     document.querySelector('.m_color').addEventListener('click', function m_btn_color() {
-        person.color = '파란색';
         document.querySelector('.color').style.display = 'none';
         delete person.color;
         console.log(person);
