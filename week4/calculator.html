@@ -50,7 +50,7 @@
         }
 
         /* 0버튼 크기 조절 */
-        .zero {
+        #zero {
             width: 230px; height: 35px;
         }
 
@@ -62,41 +62,54 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="display">0</div> 
+        <div class="display" id="display">0</div> 
         <div class="number">
             <div class="buttons">
-                <button>7</button> 
-                <button>8</button> 
-                <button>9</button> 
-                <button>+</button>
+                <button id="seven" onclick="addToDisplay('7')">7</button> 
+                <button id="eight" onclick="addToDisplay('8')">8</button> 
+                <button id="nine" onclick="addToDisplay('9')">9</button> 
+                <button id="plus" onclick="addToDisplay('+')">+</button>
             </div>
             <div class="buttons">
-                <button>6</button> 
-                <button>5</button> 
-                <button>4</button> 
-                <button>-</button>
+                <button id="six" onclick="addToDisplay('6')">6</button> 
+                <button id="five" onclick="addToDisplay('5')">5</button> 
+                <button id="four" onclick="addToDisplay('4')">4</button> 
+                <button id="minus" onclick="addToDisplay('-')">-</button>
             </div>
             <div class="buttons">
-                <button>3</button> 
-                <button>2</button> 
-                <button>1</button> 
-                <button>*</button>
+                <button id="three" onclick="addToDisplay('3')">3</button> 
+                <button id="two" onclick="addToDisplay('2')">2</button> 
+                <button id="one" onclick="addToDisplay('1')">1</button> 
+                <button id="multiply" onclick="addToDisplay('*')">*</button>
             </div>
             <div class="buttons">
-                <button class="zero">0</button> 
-                <button>. </button> 
-                <button>/</button>
+                <button id="zero" onclick="addToDisplay('0')">0</button> 
+                <button id="decimal" onclick="addToDisplay('.')">. </button> 
+                <button id="divide" onclick="addToDisplay('/')">/</button>
             </div>
             <div class="buttons">
-                <button class="equals">=</button> 
+                <button class="equals" onclick="calculate()">=</button> 
             </div>
         </div>
-    </div>
 
     <script>
-        const zero = document.querySelector('.zero');
-        zero = 0;
+        let expression = '';
         
+        function addToDisplay(value) {
+            expression += value;
+            document.getElementById('display').innerText = expression;
+        }
+
+        function calculate() {
+            try {
+                const result = eval(expression);
+                document.getElementById('display').innerText = result;
+                expression = ''; // Clear expression for next calculation
+            } catch (error) {
+                document.getElementById('display').innerText = 'Error';
+                expression = ''; // Clear expression in case of error
+            }
+        }
     </script>
 </body>
 </html>
