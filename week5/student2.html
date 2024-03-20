@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예지 문제</title>
+</head>
+<body>
+    <div id="studentInfo"></div>
+    <script>
+        const student = [
+        {
+            이름: '전예지',
+            나이: 21,
+            정보: {
+                키: 167,
+                시력: -4.5,
+            },
+            좋아하는활동: ['영화시청', '쇼핑'],
+            성별: '여성'
+        },
+        {
+            이름: '박소정',
+            나이: 21,
+            정보: {
+                키: 158,
+                시력: -5.5,
+            },
+            좋아하는활동: ['뜨개질', '게임'],
+            성별: '여성'
+        },
+        {
+            이름: '김수민',
+            나이: 21,
+            정보: {
+                키: 162,
+                시력: -3.0,
+            },
+            좋아하는활동: ['걷기', '환기시키기'],
+            성별: '여성'
+        },
+        {
+            이름: '설윤아',
+            나이: 21,
+            정보: {
+                키: 160,
+                시력: 1.5,
+            },
+            좋아하는활동: ['드라마랑영화보기', '소정이랑놀기'],
+            성별: '여성'
+        }
+        ];
+
+        const studentInfoContainer = document.getElementById('studentInfo');
+
+        //student.forEach()는 js 배열 메소드 중 하나임
+        //배열의 각 요소에 대해 주어진 함수를 실행. 순서대로 한 번씩 실행하고 반복문 대신 가능
+        //(studentData, index) => {}는 화살표 함수.. 
+        //forEach 메소드가 반복하는 동안 각 요소에 적용됨
+        //studentDate는 배열의 현재 요소, index는 현재 요소의 인덱스임
+        student.forEach((studentData, index) => {
+                        //새로운 html 요소 생성 메소드.. 여기선 div요소 생성 후 studentdiv 변수에 할당함
+            const studentDiv = document.createElement('div');
+            //백틱 사용->템플릿 리터럴(: 문자열 안에 변수나 표현식을 쉽게 포함할수잇게해줌)
+            //${} << js표현식임 
+            studentDiv.innerHTML = ` 
+                <h2>학생 ${index + 1}</h2>
+                <p>이름: ${studentData.이름}</p>
+                <p>나이: ${studentData.나이}</p>
+                <p>키: ${studentData.정보.키}</p>
+                <p>시력: ${studentData.정보.시력}</p>
+                <p>좋아하는 활동: ${studentData.좋아하는활동.join(', ')}</p>
+                <p>성별: ${studentData.성별}</p>
+                <hr/>
+            `;
+            //appendchild 메소드를 사용해 새로 만든 div 요소를 sic에 자식 요소로 추가
+            //appendchild(): 지정된 부모 노드의 자식 노드 목록의 마지막에 새로운 자식 노드를 추가하는 메소드
+            //노드는 문서객체모델(Document Object Model, DOM)의 구성요소를 가리키는 말임
+            studentInfoContainer.appendChild(studentDiv);
+        });
+
+    </script>
+</body>
+</html>

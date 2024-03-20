@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('.button1').addEventListener('click', function btn1(){
         let answer1 = prompt("그렇다면 자바스크립트는 어떤 ***** ** **** 언어인가?");
 
-        if(answer1 === "뭐였더라요 기반 객체지향"){
+        if(answer1 === "프로토타입 기반 객체지향"){
             alert('맞습니다.')
         } else {
             alert('틀렸습니다.')
