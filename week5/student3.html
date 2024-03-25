@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>은서문제</title>
+    <style>
+        body {
+            margin: 300px 400px;
+        }
+        button {
+            width: 170px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="studentId1()">나의 학번은?</button>
+    <button onclick="major1()">나의 전공은?</button>
+    <button onclick="gender1()">나의 성별은?</button>
+    <button onclick="compliment1()">나에게 해주고 싶은 말은?</button>
+    <script>
+        const sojeong = {
+            school: {
+                studentId: '202310461',
+                major: '의료정보학과'
+            },
+                gender: '여자'
+        };
+
+        function studentId1() {
+            alert(sojeong.school.studentId);
+        }
+        function major1() {
+            alert(sojeong.school.major);
+        }
+        function gender1() {
+            alert(sojeong.gender);
+        }
+        function compliment1() {
+            sojeong.compliment = '잠자고싶지예?'
+            alert(sojeong.compliment);
+        }
+    </script>
+</body>
+</html>
