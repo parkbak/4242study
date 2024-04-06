@@ -8,28 +8,28 @@
 <body>
     <script>
         function MaxOrMin(numbers) {
-            if(numbers.length === 0) {
-                console.log("숫자를 다시 입력해주세요.");
+            if(numbers.trim() === "") {
+                return "숫자를 다시 입력해주세요.";
             }
-            const arr=parseInt(numbersInput);
-            for () {
-
+            const arr = numbers.split(" ");
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = Number(arr[i]);
             }
 
-            let max
-            let min
+            let max = arr[0];
+            let min = arr[0];
 
-            for () {
-                if() {
-
-                } else if () {
-
+            for (let i = 1; i < arr.length; i++) {
+                if(arr[i] > max) {
+                    max = arr[i];
+                } else if (arr[i] < min) {
+                    min = arr[i];
                 }
             }
-
+            return "최댓값은 " + max + ", 최솟값은 " + min;
         }
 
-        const numbersInput = "3 100 2 6 0 5";
+        const numbersInput = "123 4 3 4 6";
         console.log(MaxOrMin(numbersInput));
     </script>
 </body>
