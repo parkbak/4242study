@@ -22,15 +22,13 @@ var lottoNumbers = [];
 
 function result() {
     lottoNumbers = [];
-
-    // 1부터 45까지의 숫자를 배열에 넣음
+    
     for (var i = 1; i <= 45; i++) {
         lottoNumbers.push(i);
     }
 
     var selectedNumbers = [];
 
-    // 무작위로 6개의 숫자를 선택하여 selectedNumbers 배열에 넣음
     while (selectedNumbers.length < 6) {
         var random = Math.floor(Math.random() * 45);
         var selectedNumber = lottoNumbers[random];
@@ -39,12 +37,10 @@ function result() {
         }
     }
 
-    // 선택된 숫자를 오름차순으로 정렬
     selectedNumbers.sort(function(a, b) {
         return a - b;
     });
 
-    // 화면에 로또 번호 출력
     var lottoNumbersText = selectedNumbers.join(', ');
     document.getElementById('lottoNumbers').textContent = "추첨된 로또 번호: " + lottoNumbersText;
 }

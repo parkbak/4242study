@@ -4,10 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
+    <style>
+        body {
+            margin: auto;
+            text-align: center;
+        }
+        #username {
+            width: 80px;
+        }
+        #textarea {
+            width: 250px;
+        }
+        #textbox {
+            margin: auto;
+            margin-top: 20px;
+            height: 35px;
+            text-align: center;
+        }
+        #t_number {
+            width: 50px;
+        }
+        #t_user {
+            width: 80px;
+        }
+        #t_content {
+            width: 400px;
+        }
+        #t_date {
+            width: 190px;
+        }
+    </style>
 </head>
 <body>
+    <h2>게시판</h2>
     <input type="text" id="username">
     <input type="text" id="textarea">
     <button id="push">글작성</button>
+    <form>
+        <table id="textbox" border="1px">
+            <tr>
+                <th id="t_number">번호</th>
+                <th id="t_user">작성자</th>
+                <th id="t_content">내용</th>
+                <th id="t_date">작성일</th>
+            </tr>
+        </table>
+    </form>
+    <script>
+        let post = [];
+        document.querySelector('#push').addEventListener('click', function (){
+            let username = document.querySelector('#username').value;
+            let textarea = document.querySelector('#textarea').vlaue;
+            
+        });
+    </script>
 </body>
 </html>

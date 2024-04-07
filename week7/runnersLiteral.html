@@ -38,12 +38,10 @@
       moto: "난 자유롭게 살겨"}
     ]
 
-    //Q1)input에 숫자를 입력받아 그에 따른 수상자 정보 내보내기
     function winner() {
       let year = document.querySelector('#inputYear').value;
       let text = document.querySelector('#textarea');
-      //if문을 사용하여 입력한 년도수에 따라 각각의 객체리터럴을 textarea에 내보냄
-      //자바스크립트 객체를 JSON문자열로 변환하여야 값이 출력됨!
+
       if (year == 2023) {
         text.value = JSON.stringify(runningArr[0])
       } else if (year == 2022) {
@@ -59,9 +57,6 @@
       }
     }
 
-    //Q2)선수들의 나이 평균값 내기
-    //parseInt함수를 통해 숫자로 변환 후 평균을 내기
-    //결과 alert창에 띄우기("선수들의 평균나이는 ㅇㅇ입니다.")
     function ageAvg() {
       let sum = 0;
       for (let i = 0; i < runningArr.length; i++) {
