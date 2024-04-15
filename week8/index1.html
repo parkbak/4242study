@@ -103,10 +103,6 @@
             content_cell.innerHTML = post.content;
             time_cell.innerHTML = post.date;
 
-            username.value = '';
-            textarea.value = '';
-
-            
             //삭제 버튼 생성
             let xbtn = document.createElement('button');
             //버튼 내에 글씨 추가해줌
@@ -124,6 +120,18 @@
                 }
             });
             
+            // Enter 키를 눌렀을 때 이벤트 처리
+            document.addEventListener('keypress', function(event) {
+                // Enter 키의 keyCode는 13입니다.
+                if (event.keyCode === 13) {
+                    // 현재 포커스가 username 입력란이거나 textarea 입력란에 있을 때만 작동하도록 조건을 추가합니다.
+                    if (document.activeElement.id === 'username' || document.activeElement.id === 'textarea') {
+                        // push 버튼 클릭과 같은 효과를 내기 위해 click 이벤트를 강제로 호출합니다.
+                        document.querySelector('#push').click();
+                    }
+                }
+            });
+
 
             //댓글 버튼 생성
             let commentbtn = document.createElement('button');
@@ -131,7 +139,14 @@
             commentbtn.textContent = '댓글';
             //기능 추가하는 부분
             commentbtn.addEventListener('click', function() {
-                
+                //prompt창으로 댓글을 입력 받음
+                comment=prompt('댓글을 입력하세요');
+                //댓글을 담을 p요소를 만들어
+                pcomment=document.createElement('p');
+                //만든 p요소에 입력받았던 댓글을 넣고
+                pcomment.textContent=comment;
+                //내용셀에 추가하다...
+                content_cell.appendChild(pcomment);
             });
             
             //버튼 삽입할 공간 만들기
@@ -141,7 +156,14 @@
             skillbtn.appendChild(commentbtn);
             //만든 공간을 셀에 추가
             skill_cell.appendChild(skillbtn);
+
+            //push버튼 누르면 입력창 초기화
+            document.querySelector('#username').value = '';
+            document.querySelector('#textarea').value = '';
         });
+
+        
+
     </script>
 </body>
 </html>
