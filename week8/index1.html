@@ -52,23 +52,49 @@
     <script>
         //글 저장할 객체 배열 생성 여기에 글이 저장됨
         let posts = [];
-        //버튼에 이벤트 추가.. 버튼을 클릭했을 때 밑에 잇는 것들이 실행됨
+        // 엔터누르면올라감
+        document.addEventListener('keypress', function(event) {
+            // 엔터키 코드->13번
+            if (event.keyCode === 13) {
+                // 포커스가 이름이나 내용쪽일때만 작동
+                if (document.activeElement.id === 'username' || document.activeElement.id === 'textarea') {
+                    
+                    let username = document.querySelector('#username').value;
+                    let textarea = document.querySelector('#textarea').value;
+                    
+                    // 내용비엇는지확인
+                    if (textarea.trim() === '') {
+                        alert('내용을 입력하세요.'); // 내용비면경고창
+                        return; // 함수중지
+                    }
+                    
+                    //푸쉬랑 같은 효과를 내기 위해 호출
+                    document.querySelector('#push').click();
+                }
+            }
+        });
+        //버튼에 이벤트 추가.. 버튼을 클릭했을 때 밑에 있는 것들이 실행됨
         document.querySelector('#push').addEventListener('click', function (){
             //사용자가 입력한 이름의 값을 가져옴
             let username = document.querySelector('#username').value;
             //사용자가 입력한 글의 값을 가져옴
             let textarea = document.querySelector('#textarea').value;
             
+            if (textarea.trim() === '') {
+                alert('내용을 입력하세요.'); //내용이 비었는지 확인
+                return;
+            }
             //Date()는 현재 시간과 날짜 정보를 제공하는 객체임
             //매개변수 입력x일 때 현재 시간과 날짜 가리키는 객체를 생성함
             let nowtime = new Date();
-
+            
+    
             //toLocaleString()은 시간과 날짜 객체의 내용을 해당 지역에 맞는 문자열로 변환해주는 메소드임
             //현재 날짜와 시간을 한국에 맞는 문자열로 변환해줌
             let nowtime_str = nowtime.toLocaleString();
             
-
-            //새로운 글 객체를 생성.. 글번호,작성자,글내용,작성일을 포함하고잇듬
+    
+            //새로운 글 객체를 생성.. 글번호,작성자,글내용,작성일을 포함하고 있음
             let post = {
                 //배열의 인덱스는 0부터 시작하므로,.. 새로운 글이 추가될 때마다
                 //글 번호가 1씩 증가할 수 있도록 posts.length+1을 사용
@@ -77,17 +103,17 @@
                 content: textarea,
                 date: nowtime_str
             };
-
+    
             //새로 작성된 글 객체(post)를 posts 배열에 추가함
             posts.push(post);
-
+    
             //테이블 값 가져오기
             let table = document.querySelector('#textbox');
             
             //insertRow()는 테이블의 마지막에 새로운 행을 추가해주는 메소드임
             //insertRow(0)은 테이블 첫 번째 위치에, insertRow(-1)은 테이블 마지막 위치에 새로운 행 추가
             let row = table.insertRow(-1);
-
+    
             //insertCell()은 새로운 셀을 추가하고 해당 셀에 대한 참조를 반환하는 메소드
             //특정 위치에 새로운 셀 삽입 가능
             //insertCell(0)은 행의 첫 번째 위치에, insertCell(-1)은 마지막에 새로운 셀을 추가
@@ -96,21 +122,21 @@
             let content_cell = row.insertCell(2);
             let time_cell = row.insertCell(3);
             let skill_cell = row.insertCell(4);
-
+    
             //셀에 각자 맞는 객체 삽입
             number_cell.innerHTML = post.number;
             user_cell.innerHTML = post.user;
             content_cell.innerHTML = post.content;
             time_cell.innerHTML = post.date;
-
+    
             //삭제 버튼 생성
             let xbtn = document.createElement('button');
-            //버튼 내에 글씨 추가해줌
+            //버튼 내에 글씨 추가
             xbtn.textContent = '삭제';
             //기능 추가하는 부분
             xbtn.addEventListener('click', function() {
-                //confirm vs alter
-                //alter은 확인 버튼만 있지만 confirm은 확인 및 취소 버튼이 있음
+                //confirm vs alert
+                //alert은 확인 버튼만 있지만 confirm은 확인 및 취소 버튼이 있음
                 if (confirm('정말 삭제하시겠습니까?')) {
                     // 삭제할 행의 인덱스를 찾아서 해당 행 삭제
                     let rowIndex = row.rowIndex;
@@ -119,39 +145,28 @@
                     posts.splice(rowIndex - 1, 1);
                 }
             });
-            
-            // Enter 키를 눌렀을 때 이벤트 처리
-            document.addEventListener('keypress', function(event) {
-                // Enter 키의 keyCode는 13입니다.
-                if (event.keyCode === 13) {
-                    // 현재 포커스가 username 입력란이거나 textarea 입력란에 있을 때만 작동하도록 조건을 추가합니다.
-                    if (document.activeElement.id === 'username' || document.activeElement.id === 'textarea') {
-                        // push 버튼 클릭과 같은 효과를 내기 위해 click 이벤트를 강제로 호출합니다.
-                        document.querySelector('#push').click();
-                    }
-                }
-            });
-
 
             //댓글 버튼 생성
             let commentbtn = document.createElement('button');
-            //버튼 내에 글씨 추가해줌
+            //버튼 내에 글씨 추가
             commentbtn.textContent = '댓글';
             //기능 추가하는 부분
             commentbtn.addEventListener('click', function() {
                 //prompt창으로 댓글을 입력 받음
-                comment=prompt('댓글을 입력하세요');
-                //댓글을 담을 p요소를 만들어
-                pcomment=document.createElement('p');
-                //만든 p요소에 입력받았던 댓글을 넣고
-                pcomment.textContent=comment;
-                //내용셀에 추가하다...
-                content_cell.appendChild(pcomment);
+                let comment = prompt('댓글을 입력하세요');
+                if (comment !== null) { // 취소 버튼이 아닌 경우에만 처리
+                    //댓글을 담을 p요소를 만들어
+                    let pcomment = document.createElement('p');
+                    //만든 p요소에 입력받았던 댓글을 넣고
+                    pcomment.textContent = comment;
+                    //내용셀에 추가
+                    content_cell.appendChild(pcomment);
+                }
             });
             
             //버튼 삽입할 공간 만들기
             let skillbtn = document.createElement('div');
-            //공간에 버튼들 넣구
+            //공간에 버튼들 넣음
             skillbtn.appendChild(xbtn);
             skillbtn.appendChild(commentbtn);
             //만든 공간을 셀에 추가
@@ -161,9 +176,7 @@
             document.querySelector('#username').value = '';
             document.querySelector('#textarea').value = '';
         });
-
-        
-
     </script>
+    
 </body>
 </html>
