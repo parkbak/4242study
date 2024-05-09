@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
     <style>
+        p {
+            padding: 0px;
+            margin: 0px;
+            margin-top: 5px;
+        }
         body {
             margin: auto;
             text-align: center;
@@ -33,6 +38,10 @@
         #t_date {
             width: 190px;
         }
+        .btn {
+            margin-top: 20px;
+            margin-left: 540px;
+        }
     </style>
 </head>
 <body>
@@ -40,6 +49,13 @@
     <input type="text" id="username">
     <input type="text" id="textarea">
     <button id="push">글작성</button>
+    <br>
+    <div class="btn">
+    <button id="savebtn" onclick="downloadText()">저장하기</button>
+    <button for="fileBtn" class="function-btn" id="open_file">불러오기</button>
+    <input type="file" id="fileBtn" style="display:none" accept=".json" title='Select JSON File' />
+    <button id="resetbtn">게시판 비우기</button>
+    </div>
     <table id="textbox" border="1px">
         <tr>
             <th id="t_number">번호</th>
@@ -157,11 +173,29 @@
                 if (comment !== null) { // 취소 버튼이 아닌 경우에만 처리
                     //댓글을 담을 p요소를 만들어
                     let pcomment = document.createElement('p');
+                    let comment_time = new Date().toLocaleString();
                     //만든 p요소에 입력받았던 댓글을 넣고
-                    pcomment.textContent = comment;
+                    pcomment.textContent = "▶"+comment +" "+"("+comment_time+")";
                     //내용셀에 추가
                     content_cell.appendChild(pcomment);
+                    
                 }
+            });
+
+            resetbtn.addEventListener('click', function() {
+                //테이블 변수 생성<<여기에 테이블값가져옴
+                let table = document.querySelector('#textbox');
+                //테이블 행 개수를 변수에 담음
+                let rowcount = table.rows.length;
+                //조건식
+                if (rowcount > 1) {
+                    //첫번째행은 지우면 안 되니까 행개수-1을 해야 됨
+                    //첫번째 행 제외 삭제 
+                    for (let i = rowcount-1; i>0; i--) {
+                        table.deleteRow(i);
+                    }
+                }
+                
             });
             
             //버튼 삽입할 공간 만들기
@@ -175,6 +209,40 @@
             //push버튼 누르면 입력창 초기화
             document.querySelector('#username').value = '';
             document.querySelector('#textarea').value = '';
+        });
+        
+        function downloadText(filename) {
+            if (posts.length == 0) {
+            alert('저장할 데이터가 없습니다.');
+            return;
+            }
+            var element = document.createElement('a');
+            var jsonString = JSON.stringify(posts, null, 4);
+            element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonString));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            }
+        
+
+        const label = document.getElementById('open_file');
+        const fileInput = document.getElementById('fileBtn');
+
+        label.addEventListener('click', function(e) {
+            e.preventDefault();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const fr = new FileReader();
+            fr.onload = () => {
+                var fileContent = fr.result;
+                var jsonObj = JSON.parse(fileContent);
+            }
+            fr.readAsText(file);
         });
     </script>
     
