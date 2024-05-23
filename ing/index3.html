@@ -74,8 +74,8 @@
     <!-- 검색 패널 -->
     <div style="float: left;">
         <input type="text" style="width: 350px;" id="text_find" placeholder="검색어 입력" />
-        <button id="findtextBtn" class="normal-btn" >검색</button>
-        <button id="viewallBtn" class="normal-btn" >검색해제</button>       
+        <button id="findtextBtn" class="normal-btn">검색</button>
+        <button id="viewallBtn" class="normal-btn">검색해제</button>       
     </div>
     <br>
 
@@ -140,7 +140,7 @@
     
                 contents = jsonObj;
     
-                refreshList(contents);
+                refreshList();
             }
             fr.readAsText(file);
         });
@@ -171,7 +171,7 @@
     
             // 검색 결과를 첫 페이지로 설정하고 리스트를 업데이트
             searchCurrentPage = 1;
-            refreshList(searchResults);
+            refreshList();
         }
     
         // 검색 해제 버튼 클릭 시
@@ -182,7 +182,7 @@
             searchResults = [];
             searchCurrentPage = 1;
             text_find.value = ''; // 검색어 입력 필드 초기화
-            refreshList(contents); // 전체 목록으로 화면 갱신
+            refreshList(); // 전체 목록으로 화면 갱신
         }
     
         // 기능함수
@@ -194,7 +194,7 @@
     
             contents.push({ id: userStr, content: contentStr, date: new Date().toLocaleString(), comment: [] });
     
-            refreshList(contents);
+            refreshList();
         }
     
         function clearAll() {
@@ -204,11 +204,13 @@
             }
     
             contents.length = 0;
-            refreshList(contents);
+            refreshList();
         }
     
-        // 글목록 갱신
-        function refreshList(list) {
+        // 글목록 갱신...
+        function refreshList() {
+            let list = searchResults.length > 0 ? searchResults : contents;
+            let page = searchResults.length > 0 ? searchCurrentPage : currentPage;
     
             if (list == undefined) {
                 return;
@@ -216,8 +218,8 @@
     
             let htmlText = '<table > <tr > <th style="width: 20px;">번호</th> <th style="width: 60px;">작성자</th> <th style="width: 300px;">내용</th> <th style="width: 100px;">작성일</th> <th style="width: 100px;">기능</th> </tr>';
     
-            let i = 1 + (currentPage - 1) * itemsPerPage;
-            let paginatedList = list.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+            let i = 1 + (page - 1) * itemsPerPage;
+            let paginatedList = list.slice((page - 1) * itemsPerPage, page * itemsPerPage);
             for (let item of paginatedList) {
                 htmlText += `<tr > <td>${i}</td> <td>${item.id}</td>`;
                 htmlText += `<td style="text-align: left;">${item.content}`
@@ -242,13 +244,14 @@
             }
             textlist.innerHTML = htmlText + '</table>';
 
-            renderPagination(list.length);
+            renderPagination(list.length, page);
 
             // 입력창 초기화
             user.value = '';
             content.value = '';
         }
 
+        //총 페이지 수 계산, 페이지에 대한 버튼 생성하는 부분
         function renderPagination(totalItems, page) {
             let totalPages = Math.ceil(totalItems / itemsPerPage);
             let paginationHtml = '';
@@ -259,10 +262,15 @@
     
             pagination.innerHTML = paginationHtml;
         }
-    
+        
+        //페이지 이동
         function goToPage(page) {
-            currentPage = page;
-            refreshList(contents);
+            if (searchResults.length > 0) {
+                searchCurrentPage = page;
+            } else {
+                currentPage = page;
+            }
+            refreshList();
         }
     
         // 글삭제
@@ -272,7 +280,7 @@
                 return;
             }
             contents.splice(index, 1);
-            refreshList(contents);
+            refreshList();
         }
     
         // 댓글추가
@@ -282,7 +290,7 @@
                 return;
             }
             contents[index].comment.push(comment + ' (' + new Date().toLocaleString() + ')');
-            refreshList(contents);
+            refreshList();
         }
     
         function downloadText(filename) {
